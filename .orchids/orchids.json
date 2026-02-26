@@ -1,0 +1,9 @@
+{
+  "projectId": "8c60248e-bdcd-4ce1-9871-2143da94d4e5",
+  "createdAt": 1771928172792,
+  "startupCommands": [
+    "cmd /c C:\\odooooo\\ai-business-dashboard-main\\ai-business-dashboard-main\\start_backend.bat",
+    "cd frontend; npm install; npm run dev"
+  ],
+  "templateId": "any"
+}

@@ -1,0 +1,132 @@
+/**
+ * Design system — dark-first cyberpunk tech palette.
+ * Inspired by landonorris.com / charlesleclerc.com: stark contrast, electric accents,
+ * near-black backgrounds, acid-lime / electric-cyan highlights.
+ * Light mode retained for accessibility but defaulting to dark as primary experience.
+ */
+
+/* ───────────── Google Fonts Import ───────────── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ───────────── Light theme ───────────── */
+:root {
+  --ds-bg-base:      245 247 250;
+  --ds-bg-elevated:  235 239 247;
+  --ds-bg-surface:   255 255 255;
+  --ds-bg-surface-hover: 248 250 252;
+
+  --ds-text-primary:   9 12 22;
+  --ds-text-secondary: 44 56 82;
+  --ds-text-muted:     95 112 142;
+  --ds-text-inverse:   255 255 255;
+
+  /* Electric blue primary + acid lime secondary */
+  --ds-accent:         14 165 233;
+  --ds-accent-teal:    0 230 180;
+  --ds-accent-lime:    190 255 0;
+  --ds-accent-success: 16 185 129;
+  --ds-accent-warning: 245 158 11;
+  --ds-accent-danger:  239 68 68;
+
+  --ds-surface-shadow:    0 4px 32px rgb(9 12 22 / 0.09),  0 1px 4px rgb(9 12 22 / 0.05);
+  --ds-surface-shadow-lg: 0 16px 56px rgb(9 12 22 / 0.14), 0 2px 8px rgb(9 12 22 / 0.06);
+  --ds-card-shadow:       0 2px 16px rgb(9 12 22 / 0.06),  0 1px 3px rgb(9 12 22 / 0.04);
+  --ds-border: 210 220 235;
+
+  --ds-gradient-bg:       linear-gradient(165deg, #f5f7fa 0%, #edf1f7 55%, #dde5f2 100%);
+  --ds-gradient-accent:   linear-gradient(135deg, #0ea5e9 0%, #00e6b4 100%);
+  --ds-gradient-hero-left: linear-gradient(140deg, #f5f7fa 0%, #dce8f8 45%, #edf1f7 100%);
+
+  --ds-hero-glow:     radial-gradient(ellipse 72% 62% at 22% 48%, rgba(14,165,233,0.08)  0%, transparent 58%);
+  --ds-hero-ambient:  radial-gradient(ellipse 52% 72% at 82% 48%, rgba(0,230,180,0.06)   0%, transparent 58%);
+  --ds-hero-vignette: radial-gradient(ellipse 95% 85% at 50% 50%, transparent 62%, rgba(245,247,250,0.4) 100%);
+}
+
+/* ───────────── Dark theme (primary) — deep void, electric edges ───────────── */
+.dark {
+  /* True near-black void backgrounds */
+  --ds-bg-base:      4 6 14;
+  --ds-bg-elevated:  8 11 22;
+  --ds-bg-surface:   12 17 32;
+  --ds-bg-surface-hover: 17 24 44;
+
+  /* High-contrast white-adjacent text */
+  --ds-text-primary:   242 246 255;
+  --ds-text-secondary: 180 196 224;
+  --ds-text-muted:     108 128 162;
+  --ds-text-inverse:   4 6 14;
+
+  /* Electric cyan primary, acid lime secondary */
+  --ds-accent:         0 212 255;
+  --ds-accent-teal:    0 255 195;
+  --ds-accent-lime:    190 255 0;
+  --ds-accent-success: 34 197 148;
+  --ds-accent-warning: 251 191 36;
+  --ds-accent-danger:  248 70 70;
+
+  --ds-surface-shadow:    0 4px 32px rgb(0 0 0 / 0.55),  0 1px 4px rgb(0 0 0 / 0.35);
+  --ds-surface-shadow-lg: 0 16px 64px rgb(0 0 0 / 0.7),  0 2px 8px rgb(0 0 0 / 0.45);
+  --ds-card-shadow:       0 2px 20px rgb(0 0 0 / 0.45),  0 1px 4px rgb(0 0 0 / 0.3);
+  --ds-border: 255 255 255;
+
+  --ds-gradient-bg:       linear-gradient(165deg, #04060e 0%, #080b16 45%, #060911 100%);
+  --ds-gradient-accent:   linear-gradient(135deg, #00d4ff 0%, #00ffc3 100%);
+  --ds-gradient-hero-left: linear-gradient(140deg, #04060e 0%, #0a1228 48%, #080b16 100%);
+
+  /* Vivid neon-glow heroes */
+  --ds-hero-glow:     radial-gradient(ellipse 72% 62% at 22% 48%, rgba(0,212,255,0.14)   0%, transparent 58%);
+  --ds-hero-ambient:  radial-gradient(ellipse 52% 72% at 82% 48%, rgba(0,255,195,0.09)   0%, transparent 58%);
+  --ds-hero-vignette: radial-gradient(ellipse 95% 85% at 50% 50%, transparent 55%, rgba(4,6,14,0.6) 100%);
+}
+
+/* ───────────── Shared ───────────── */
+:root,
+.dark {
+  /* Headline: Bebas Neue (F1-style bold all-caps) or Outfit ultra-bold */
+  --ds-font-display: 'Outfit', 'Space Grotesk', system-ui, sans-serif;
+  /* Body: Space Grotesk — clean, geometric, techy */
+  --ds-font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  /* Code / numbers: JetBrains Mono */
+  --ds-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Accent large titles: Bebas Neue */
+  --ds-font-impact: 'Bebas Neue', 'Outfit', sans-serif;
+
+  --ds-text-display:    4.5rem;
+  --ds-text-hero:       3.5rem;
+  --ds-text-title:      2.4rem;
+  --ds-text-heading:    1.75rem;
+  --ds-text-subheading: 1.25rem;
+  --ds-text-body:       1rem;
+  --ds-text-body-sm:    0.875rem;
+  --ds-text-micro:      0.75rem;
+
+  --ds-leading-tight:  1.05;
+  --ds-leading-snug:   1.3;
+  --ds-leading-normal: 1.65;
+
+  --ds-space-1:  0.25rem;
+  --ds-space-2:  0.5rem;
+  --ds-space-3:  0.75rem;
+  --ds-space-4:  1rem;
+  --ds-space-5:  1.25rem;
+  --ds-space-6:  1.5rem;
+  --ds-space-8:  2rem;
+  --ds-space-10: 2.5rem;
+  --ds-space-12: 3rem;
+  --ds-space-16: 4rem;
+  --ds-space-20: 5rem;
+  --ds-space-24: 6rem;
+
+  --ds-container-max: 82rem;
+  --ds-section-px:    1.5rem;
+  --ds-section-py:    7rem;
+
+  --ds-radius-sm: 0.5rem;
+  --ds-radius-md: 0.75rem;
+  --ds-radius-lg: 1.125rem;
+  --ds-radius-xl: 1.5rem;
+
+  --ds-ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ds-ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+}
+

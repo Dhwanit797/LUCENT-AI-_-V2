@@ -1,0 +1,5 @@
+2026-02-23T16:41:26.863Z [console][error] Access to fetch at 'http://localhost:8000/auth/login' from origin 'http://localhost:3001' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+2026-02-23T16:41:29.279Z [console][error] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+2026-02-23T16:41:26.863Z [console][error] Access to fetch at 'http://localhost:8000/auth/login' from origin 'http://localhost:3001' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+2026-02-23T16:41:29.279Z [console][error] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+2026-02-23T16:42:20.813Z [console][error] Access to fetch at 'http://localhost:8000/auth/login' from origin 'http://localhost:3001' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
