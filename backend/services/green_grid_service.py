@@ -2,8 +2,8 @@ import pandas as pd
 from typing import List, Dict, Any
 from fastapi import UploadFile, HTTPException
 from sqlalchemy.orm import Session
-from models.green_grid import GreenGridRecord
-from services.data_quality_service import compute_data_quality
+from backend.models.green_grid import GreenGridRecord
+from backend.services.data_quality_service import compute_data_quality
 
 
 def get_green_grid_status(db: Session) -> Dict[str, Any]:

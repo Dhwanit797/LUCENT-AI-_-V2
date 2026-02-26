@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean
-from database import Base
+from backend.database import Base
 
 class FraudRecord(Base):
     __tablename__ = "fraud_records"

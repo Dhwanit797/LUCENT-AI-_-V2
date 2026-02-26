@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, UploadFile, File
 from sqlalchemy.orm import Session
-from core.security import get_current_user
-from database import get_db
-from services.green_grid_service import get_green_grid_data, get_energy_chart_data, upload_green_csv, get_green_grid_status
+from backend.core.security import get_current_user
+from backend.database import get_db
+from backend.services.green_grid_service import get_green_grid_data, get_energy_chart_data, upload_green_csv, get_green_grid_status
 
 router = APIRouter(prefix="/green-grid", tags=["green-grid"])
 
@@ -25,7 +25,7 @@ def energy_chart(user=Depends(get_current_user), db: Session = Depends(get_db)):
 def upload_csv(file: UploadFile = File(...), user=Depends(get_current_user), db: Session = Depends(get_db)):
     return upload_green_csv(file, db)
 
-from models.green_grid import GreenGridRecord
+from backend.models.green_grid import GreenGridRecord
 
 @router.delete("/clear")
 def clear_green_grid_data(user=Depends(get_current_user), db: Session = Depends(get_db)):

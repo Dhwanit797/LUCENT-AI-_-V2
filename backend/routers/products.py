@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from core.security import get_current_user
-from database import get_db
-from models.product import Product
+from backend.core.security import get_current_user
+from backend.database import get_db
+from backend.models.product import Product
 
 
 router = APIRouter(prefix="/products", tags=["products"])
@@ -11,21 +11,30 @@ router = APIRouter(prefix="/products", tags=["products"])
 
 @router.get("")
 def list_products(db: Session = Depends(get_db), user=Depends(get_current_user)):
-    """Return products with computed demand score."""
+    """Return products with demand score derived from inventory (low quantity = higher demand)."""
     products = db.query(Product).all()
+    if not products:
+        return []
+
+    quantities = [p.available_quantity or 0 for p in products]
+    max_qty = max(quantities)
+    base_factor = max(1, int(round(max_qty * 0.25))) if max_qty > 0 else 1
     results = []
 
     for p in products:
         available = p.available_quantity or 0
-        sold = p.total_sold or 0
-        total = sold + available
 
-        if total > 0:
-            raw_demand = (sold / total) * 100.0
+        # Demand score from quantity: low quantity -> higher demand, high quantity -> lower demand (0-100)
+        if max_qty > 0:
+            demand = int(round(100.0 - min(100.0, (available / max_qty) * 100.0)))
         else:
-            raw_demand = 0.0
+            demand = 0
 
-        demand = int(round(max(0.0, min(raw_demand, 100.0))))
+        # Total Sold derived deterministically from demand score + available quantity (no sales history in CSV).
+        raw_sold = (demand / 100.0) * (available + base_factor)
+        sold = int(round(raw_sold))
+        if sold < 0:
+            sold = 0
 
         results.append(
             {

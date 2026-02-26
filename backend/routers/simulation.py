@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
-from core.security import get_current_user
-from database import get_db
-from services.simulation_service import run_simulation
+from backend.core.security import get_current_user
+from backend.database import get_db
+from backend.services.simulation_service import run_simulation
 
 
 class SimulationRequest(BaseModel):

@@ -53,7 +53,11 @@ export default function Login() {
     try {
       const res = await apiLogin(email, password)
       login(res.access_token, res.user)
-      navigate('/dashboard', { replace: true })
+
+      // small microtask delay so context updates
+      setTimeout(() => {
+        navigate('/dashboard', { replace: true })
+      }, 0)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed')
     } finally {
@@ -74,9 +78,13 @@ export default function Login() {
     }
     setLoading(true)
     try {
-      const res = await apiRegister(fullName.trim(), regEmail, regPassword)
+      const res = await apiLogin(email, password)
       login(res.access_token, res.user)
-      navigate('/dashboard', { replace: true })
+
+      // small microtask delay so context updates
+      setTimeout(() => {
+        navigate('/dashboard', { replace: true })
+      }, 0)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Registration failed')
     } finally {

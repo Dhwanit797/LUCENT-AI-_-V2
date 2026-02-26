@@ -6,12 +6,12 @@ import pandas as pd
 from fastapi import UploadFile, HTTPException
 from sqlalchemy.orm import Session
 
-from services.schema_validator import validate_schema, SCHEMAS
-from services.data_normalizer import normalize
-from models.expense import ExpenseItem
-from models.fraud import FraudRecord
-from models.inventory import InventoryItem
-from models.green_grid import GreenGridRecord
+from backend.services.schema_validator import validate_schema, SCHEMAS
+from backend.services.data_normalizer import normalize
+from backend.models.expense import ExpenseItem
+from backend.models.fraud import FraudRecord
+from backend.models.inventory import InventoryItem
+from backend.models.green_grid import GreenGridRecord
 
 
 def _store_expense(df: pd.DataFrame, db: Session) -> Tuple[int, int]:

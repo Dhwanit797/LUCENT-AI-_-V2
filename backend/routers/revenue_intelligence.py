@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from core.security import get_current_user
-from database import get_db
-from services.revenue_intelligence_service import analyze_revenue_intelligence
+from backend.core.security import get_current_user
+from backend.database import get_db
+from backend.services.revenue_intelligence_service import analyze_revenue_intelligence
 
 
 router = APIRouter(prefix="/revenue", tags=["revenue"])

@@ -3,8 +3,8 @@ import pandas as pd
 from typing import List, Dict, Any
 from fastapi import UploadFile, HTTPException
 from sqlalchemy.orm import Session
-from models.expense import ExpenseItem
-from services.data_quality_service import compute_data_quality
+from backend.models.expense import ExpenseItem
+from backend.services.data_quality_service import compute_data_quality
 
 
 def get_expense_status(db: Session) -> Dict[str, Any]:

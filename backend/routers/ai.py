@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from typing import Any, Dict, Optional
 
-from core.security import get_current_user
-from services.business_assistant import generate_business_response
+from backend.core.security import get_current_user
+from backend.services.business_assistant import generate_business_response
 
 router = APIRouter(prefix="/ai", tags=["ai"])
 

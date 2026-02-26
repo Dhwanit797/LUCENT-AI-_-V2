@@ -4,10 +4,10 @@ from typing import Dict, Any, List
 
 from sqlalchemy.orm import Session
 
-from services.fraud_service import get_fraud_insights
-from services.expense_service import get_expense_summary
-from services.inventory_service import get_inventory_summary
-from services.green_grid_service import get_green_grid_data
+from backend.services.fraud_service import get_fraud_insights
+from backend.services.expense_service import get_expense_summary
+from backend.services.inventory_service import get_inventory_summary
+from backend.services.green_grid_service import get_green_grid_data
 
 
 def _normalize(value: float, min_v: float, max_v: float) -> float:

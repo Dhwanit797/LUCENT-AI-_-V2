@@ -2,13 +2,19 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import PageHeader from '../components/PageHeader'
 import LoadingSkeleton from '../components/LoadingSkeleton'
-import { api } from '../services/api'
 
 type Vendor = {
   id: number
   name: string
   rating: number
 }
+
+type InventoryRow = {
+  vendor?: string
+  quantity?: number
+}
+
+const INVENTORY_STORAGE_KEY = 'lucent_inventory_data_rows_v1'
 
 export default function Vendors() {
   const [vendors, setVendors] = useState<Vendor[]>([])
@@ -19,18 +25,54 @@ export default function Vendors() {
     let isMounted = true
     setLoading(true)
     setError(null)
-    api<Vendor[]>('/vendors')
-      .then((data) => {
-        if (!isMounted) return
-        setVendors(data)
+    try {
+      const raw = localStorage.getItem(INVENTORY_STORAGE_KEY)
+      const inventory_data: InventoryRow[] = raw ? JSON.parse(raw) : []
+
+      const uniqueVendors = Array.from(
+        new Set(
+          inventory_data
+            .map((row) => row.vendor?.trim())
+            .filter((v): v is string => !!v && v.length > 0),
+        ),
+      )
+
+      // Debug check (mandatory)
+      console.log('All vendors extracted:', uniqueVendors)
+
+      const computed: Vendor[] = uniqueVendors.map((vendorName, index) => {
+        const vendorItems = inventory_data.filter(
+          (row) => row.vendor?.trim() === vendorName,
+        )
+
+        const totalProducts = vendorItems.length
+        const avgQuantity =
+          totalProducts > 0
+            ? vendorItems.reduce((sum, item) => sum + Number(item.quantity || 0), 0) /
+              totalProducts
+            : 0
+
+        let rating = 3
+        rating += totalProducts * 0.2
+        rating -= avgQuantity > 200 ? 0.3 : 0
+        rating += avgQuantity < 100 ? 0.5 : 0
+        rating = Math.max(1, Math.min(5, Number(rating.toFixed(1))))
+
+        return {
+          id: index + 1,
+          name: vendorName,
+          rating: Math.round(rating * 20),
+        }
       })
-      .catch((err: Error) => {
-        if (!isMounted) return
-        setError(err.message || 'Failed to load vendors')
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false)
-      })
+
+      if (!isMounted) return
+      setVendors(computed)
+    } catch (e) {
+      if (!isMounted) return
+      setError(e instanceof Error ? e.message : 'Failed to load vendors')
+    } finally {
+      if (isMounted) setLoading(false)
+    }
 
     return () => {
       isMounted = false
@@ -70,7 +112,7 @@ export default function Vendors() {
             color: 'rgb(var(--ds-text-muted))',
           }}
         >
-          No vendors found. Connect your data source to see vendor performance.
+          No inventory data found. Please upload inventory CSV in Smart Inventory module.
         </div>
       )}
 

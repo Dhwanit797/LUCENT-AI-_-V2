@@ -11,6 +11,49 @@ import AIRecommendations from '../../components/AIRecommendations'
 import { useAuth } from '../../context/AuthContext'
 
 const ACCENT = '#34D399'
+const INVENTORY_STORAGE_KEY = 'lucent_inventory_data_rows_v1'
+
+type InventoryRow = {
+  item_name?: string
+  category?: string
+  quantity?: number
+  price?: number
+  vendor?: string
+}
+
+function parseInventoryCsv(text: string): InventoryRow[] {
+  const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0)
+  if (lines.length < 2) return []
+
+  const headers = lines[0].split(',').map((h) => h.trim().toLowerCase())
+  const idx = (name: string) => headers.indexOf(name)
+  const iItem = idx('item_name')
+  const iCategory = idx('category')
+  const iQty = idx('quantity')
+  const iPrice = idx('price')
+  const iVendor = idx('vendor')
+
+  const rows: InventoryRow[] = []
+  for (let i = 1; i < lines.length; i++) {
+    const cols = lines[i].split(',')
+    if (cols.length === 0) continue
+
+    const row: InventoryRow = {}
+    if (iItem >= 0) row.item_name = (cols[iItem] ?? '').trim()
+    if (iCategory >= 0) row.category = (cols[iCategory] ?? '').trim()
+    if (iQty >= 0) {
+      const n = Number((cols[iQty] ?? '').trim())
+      row.quantity = Number.isFinite(n) ? n : 0
+    }
+    if (iPrice >= 0) {
+      const n = Number((cols[iPrice] ?? '').trim())
+      row.price = Number.isFinite(n) ? n : 0
+    }
+    if (iVendor >= 0) row.vendor = (cols[iVendor] ?? '').trim()
+    rows.push(row)
+  }
+  return rows
+}
 
 function TiltCard({ children, style = {}, className = '' }: { children: React.ReactNode; style?: React.CSSProperties; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -81,7 +124,18 @@ export default function SmartInventory() {
     } else {
       setQuality(null)
     }
-    if (res.success) { await refreshStatus(); loadData(); return res }
+    if (res.success) {
+      try {
+        const text = await file.text()
+        const parsed = parseInventoryCsv(text)
+        localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(parsed))
+      } catch {
+        // If parsing fails, keep backend upload working as-is.
+      }
+      await refreshStatus()
+      loadData()
+      return res
+    }
     throw new Error('Upload failed')
   }
 

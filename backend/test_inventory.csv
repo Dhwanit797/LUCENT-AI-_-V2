@@ -1,4 +1,4 @@
-item_name,category,quantity,price
-Test Widget X,Gadgets,50,19.99
-Test Widget Y,Tools,120,45.00
-Test Widget Z,Gadgets,15,9.50
+item_name,category,quantity,price,vendor
+Test Widget X,Gadgets,50,19.99,Vendor X
+Test Widget Y,Tools,120,45.00,Vendor Y
+Test Widget Z,Gadgets,15,9.50,Vendor Z

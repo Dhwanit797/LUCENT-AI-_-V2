@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import Response
-from core.security import get_current_user
-from services.report_service import generate_report_pdf
+from backend.core.security import get_current_user
+from backend.services.report_service import generate_report_pdf
 
 router = APIRouter(prefix="/report", tags=["report"])
 

@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends
-from core.security import get_current_user
-from services.recommendation_engine import (
+from backend.core.security import get_current_user
+from backend.services.recommendation_engine import (
     get_fraud_recommendations,
     get_expense_recommendations,
     get_inventory_recommendations,
     get_green_grid_recommendations,
 )
-from services.recommendations_service import get_recommendations
+from backend.services.recommendations_service import get_recommendations
 
 router = APIRouter(tags=["recommendations"])
 

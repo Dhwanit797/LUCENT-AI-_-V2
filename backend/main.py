@@ -2,18 +2,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import engine
-from database import Base
-from core.config import CORS_ORIGINS
-from services.demo_data import init_db
-from models.user import User  # IMPORTED SO SQLALCHEMY DETECTS IT
-from models.inventory import InventoryItem
-from models.expense import ExpenseItem
-from models.fraud import FraudRecord
-from models.green_grid import GreenGridRecord
-from models.vendor import Vendor
-from models.product import Product
-from routers import (
+from backend.database import engine
+from backend.database import Base
+from backend.core.config import CORS_ORIGINS
+from backend.services.demo_data import init_db
+from backend.models.user import User  # IMPORTED SO SQLALCHEMY DETECTS IT
+from backend.models.inventory import InventoryItem
+from backend.models.expense import ExpenseItem
+from backend.models.fraud import FraudRecord
+from backend.models.green_grid import GreenGridRecord
+from backend.models.vendor import Vendor
+from backend.models.product import Product
+from backend.routers import (
     auth,
     expense,
     fraud,

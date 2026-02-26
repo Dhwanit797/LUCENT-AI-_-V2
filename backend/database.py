@@ -1,7 +1,7 @@
 # SQLite database setup
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from core.config import DATABASE_URL
+from backend.core.config import DATABASE_URL
 
 Base = declarative_base()
 

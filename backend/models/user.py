@@ -1,7 +1,7 @@
 # User model for SQLite
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
-from database import Base  # noqa: I001
+from backend.database import Base  # noqa: I001
 
 
 class User(Base):

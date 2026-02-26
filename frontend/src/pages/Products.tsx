@@ -112,7 +112,7 @@ export default function Products() {
             color: 'rgb(var(--ds-text-muted))',
           }}
         >
-          No products found. Connect your inventory data to see product demand.
+          No inventory data found. Please upload inventory CSV in Smart Inventory module.
         </div>
       )}
 

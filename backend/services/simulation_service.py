@@ -2,10 +2,10 @@ from typing import Dict, Any, List
 
 from sqlalchemy.orm import Session
 
-from services.health_score_service import get_health_score
-from services.expense_service import get_expense_summary
-from services.inventory_service import get_inventory_forecast
-from services.fraud_service import get_fraud_insights
+from backend.services.health_score_service import get_health_score
+from backend.services.expense_service import get_expense_summary
+from backend.services.inventory_service import get_inventory_forecast
+from backend.services.fraud_service import get_fraud_insights
 
 
 def _clamp(value: float, min_v: float, max_v: float) -> float:

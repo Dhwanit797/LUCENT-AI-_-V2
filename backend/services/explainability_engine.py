@@ -5,7 +5,7 @@ without touching or re-running the detection logic.
 """
 from typing import Dict, Any, List
 from sqlalchemy.orm import Session
-from models.fraud import FraudRecord
+from backend.models.fraud import FraudRecord
 
 
 # Thresholds used purely for explanation — not detection

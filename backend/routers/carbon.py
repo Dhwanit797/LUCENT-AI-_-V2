@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
-from core.security import get_current_user
-from services.carbon_service import get_carbon_estimate
+from backend.core.security import get_current_user
+from backend.services.carbon_service import get_carbon_estimate
 
 router = APIRouter(prefix="/carbon", tags=["carbon"])
 

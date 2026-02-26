@@ -5,9 +5,9 @@ import pandas as pd
 from typing import List, Dict, Any
 from fastapi import UploadFile, HTTPException
 from sqlalchemy.orm import Session
-from models.fraud import FraudRecord
-from services.fraud_engine import normalize_columns, compute_fraud_score
-from services.data_quality_service import compute_data_quality
+from backend.models.fraud import FraudRecord
+from backend.services.fraud_engine import normalize_columns, compute_fraud_score
+from backend.services.data_quality_service import compute_data_quality
 
 
 _SNAPSHOT_PATH = Path(__file__).resolve().parent / "fraud_snapshot.json"

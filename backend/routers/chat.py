@@ -3,16 +3,16 @@ from pydantic import BaseModel
 from typing import List, Optional
 from sqlalchemy.orm import Session
 
-from core.security import get_current_user
-from database import get_db
-from services.business_assistant import generate_business_response
-from services.expense_service import get_expense_summary
-from services.fraud_service import get_fraud_insights
-from services.inventory_service import get_inventory_summary
-from services.green_grid_service import get_green_grid_data
-from services.health_score_service import get_health_score
-from services.carbon_service import get_carbon_estimate
-from services.recommendations_service import get_recommendations
+from backend.core.security import get_current_user
+from backend.database import get_db
+from backend.services.business_assistant import generate_business_response
+from backend.services.expense_service import get_expense_summary
+from backend.services.fraud_service import get_fraud_insights
+from backend.services.inventory_service import get_inventory_summary
+from backend.services.green_grid_service import get_green_grid_data
+from backend.services.health_score_service import get_health_score
+from backend.services.carbon_service import get_carbon_estimate
+from backend.services.recommendations_service import get_recommendations
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 

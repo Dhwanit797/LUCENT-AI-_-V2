@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, UploadFile, File, HTTPException
 from sqlalchemy.orm import Session
-from core.security import get_current_user
-from database import get_db
-from services.fraud_service import get_fraud_insights, get_fraud_chart_data, upload_fraud_csv, get_fraud_status
-from services.explainability_engine import explain_transaction
-from services.recommendation_engine import get_fraud_recommendations
+from backend.core.security import get_current_user
+from backend.database import get_db
+from backend.services.fraud_service import get_fraud_insights, get_fraud_chart_data, upload_fraud_csv, get_fraud_status
+from backend.services.explainability_engine import explain_transaction
+from backend.services.recommendation_engine import get_fraud_recommendations
 
 router = APIRouter(prefix="/fraud", tags=["fraud"])
 
@@ -27,7 +27,7 @@ def fraud_chart(user=Depends(get_current_user), db: Session = Depends(get_db)):
 def upload_csv(file: UploadFile = File(...), user=Depends(get_current_user), db: Session = Depends(get_db)):
     return upload_fraud_csv(file, db)
 
-from models.fraud import FraudRecord
+from backend.models.fraud import FraudRecord
 
 @router.delete("/clear")
 def clear_fraud_data(user=Depends(get_current_user), db: Session = Depends(get_db)):

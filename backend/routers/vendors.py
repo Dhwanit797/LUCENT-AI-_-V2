@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from core.security import get_current_user
-from database import get_db
-from models.vendor import Vendor
+from backend.core.security import get_current_user
+from backend.database import get_db
+from backend.models.vendor import Vendor
 
 
 router = APIRouter(prefix="/vendors", tags=["vendors"])

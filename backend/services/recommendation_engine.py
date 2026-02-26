@@ -1,11 +1,11 @@
 # Rule-based recommendation engine: fraud, expense, inventory, green-grid
 from typing import List, Dict, Any
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from models.fraud import FraudRecord
-from models.expense import ExpenseItem
-from models.inventory import InventoryItem
-from models.green_grid import GreenGridRecord
+from backend.database import SessionLocal
+from backend.models.fraud import FraudRecord
+from backend.models.expense import ExpenseItem
+from backend.models.inventory import InventoryItem
+from backend.models.green_grid import GreenGridRecord
 
 
 def get_fraud_recommendations() -> List[Dict[str, Any]]:

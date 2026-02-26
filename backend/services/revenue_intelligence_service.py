@@ -4,9 +4,9 @@ from typing import Dict, Any, List, Tuple
 
 from sqlalchemy.orm import Session
 
-from models.expense import ExpenseItem
-from services.fraud_service import get_fraud_insights
-from services.inventory_service import get_inventory_summary, get_inventory_forecast
+from backend.models.expense import ExpenseItem
+from backend.services.fraud_service import get_fraud_insights
+from backend.services.inventory_service import get_inventory_summary, get_inventory_forecast
 
 
 def _build_revenue_series(db: Session) -> List[Tuple[int, float]]:

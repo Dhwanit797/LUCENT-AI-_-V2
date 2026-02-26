@@ -2,7 +2,7 @@ from typing import Dict, Any, Tuple
 
 import pandas as pd
 
-from services.schema_validator import validate_schema, SCHEMAS
+from backend.services.schema_validator import validate_schema, SCHEMAS
 
 
 def compute_data_quality(df: pd.DataFrame, dataset_type: str) -> Dict[str, Any]:

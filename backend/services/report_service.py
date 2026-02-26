@@ -8,12 +8,12 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 
-from services.health_score_service import get_health_score
-from services.expense_service import get_expense_summary
-from services.fraud_service import get_fraud_insights
-from services.inventory_service import get_inventory_summary
-from services.green_grid_service import get_green_grid_data, get_energy_chart_data
-from database import SessionLocal
+from backend.services.health_score_service import get_health_score
+from backend.services.expense_service import get_expense_summary
+from backend.services.fraud_service import get_fraud_insights
+from backend.services.inventory_service import get_inventory_summary
+from backend.services.green_grid_service import get_green_grid_data, get_energy_chart_data
+from backend.database import SessionLocal
 
 
 _FRAUD_SNAPSHOT_PATH = Path(__file__).resolve().parent / "fraud_snapshot.json"

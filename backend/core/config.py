@@ -1,8 +1,12 @@
-# Core configuration
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+# Get project root directory (one level above backend)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Load .env from project root
+load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
